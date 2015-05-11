@@ -1,39 +1,41 @@
 from sys import exit
 
 class Engine(object):
+
 	items = ["ODM"]
 	p = "> "
 	
 	def __init__(self, scene_map):
+	
 		self.scene_map = scene_map
 		
 	def play(self):
-		current_scene = self.scene_map.opening_scene()
+	
+		current_scene = self.scene_map.intro()
 		
 		while True:
-			print Scene.header(current_scene)
+			print "AHHHHH!"
+			Scene.header(current_scene)
 			#runs the enter function from the current scene then returns the following scene's name
-			next_scene_name = current_scene.enter()
+			next_scene_name = self.scene_map.current_scene
 			#uses the next_scene function from the map class to return the next scene
 			current_scene = self.scene_map.next_scene(next_scene_name)
 
 class Scene(object):
 	
-	def header(scene):
-		keys = Map.scenes
-		
-		for key in keys.keys():
-		
-			if keys[key] == scene:
-				return ("-"*25) + key + ("-"*25)
+	def header(self, scene_name):
+		print "SKEET!!!!!!!!"
+		keys = self.scenes
+
+		for key in keys.keys():		
+			if keys[key] == scene_name:
+				print ("-"*25) + key + ("-"*25)
 			
 			else:
 				continue
-				
 
-class Intro(Scene):
-
-	def enter(self):
+	def intro(self):
+	
 		raw_input("Press ENTER to start")
     
 		print """\n\tYou awake alone, lying in a field surrounded by 
@@ -49,18 +51,17 @@ backup fuel supply in the 'forest'?"""
 			next = raw_input(Engine.p)
 	
 			if next == "cave":
-				return "Cave"
+				return self.cave()
 		
 			elif next == "forest":
-				return "Forest"
+				return forest()
 		
 			else:
 				print "I don't understand. Type either 'cave' or 'forest'."
 				continue
 		
-class Field(Scene):
-
-	def enter(self):
+	def field(self):
+	
 		if "blade" in Engine.items and "fuel" not in Engine.items:
 			print """\n\tThe abnormal titan is still in the area.  
 \nDo you run for the 'forest' with your blade to search for fuel
@@ -88,7 +89,7 @@ or risk engaging the 'titan' with low fuel?"""
 				next = raw_input(Engine.p)
 				
 				if next == "cave":
-					return "Cave"
+					return cave()
 					
 				elif next == "forest":
 					return "Forest"
@@ -115,9 +116,8 @@ or risk engaging the 'titan' with low fuel?"""
 					print "I don't understand. Type either 'cave' or 'titan'."
 					continue
 		
-class Cave(Scene):
-
-	def enter(self):
+	def cave(self):
+	
 		print """\n\tYou've evaded the incoming abnormal Titan and found safety in a cave. 
 The weapons are kept further back in the cave, however you hear a strange 
 sound coming from the darkness.  
@@ -181,9 +181,8 @@ like a girl?"""
 				print "I don't understand. Type either 'weapon' or 'leave'."
 				continue
 	
-class Forest(Scene):
+	def forest(self):
 	
-	def enter(self):
 		if "blade" in Engine.items:
 			print """\n\tYou enter the forest and notice a 3M titan
 is wandering around the supply depot.
@@ -230,15 +229,12 @@ to take on the abnormal titan.\n\nPress ENTER to return to the cave and retrieve
 				else:
 					print "I don't understand. Type either 'rock' or 'sneak'."
 				
+	def death(self):
 	
-class Death(Scene):
-
-	def enter(self):
 		pass
 		
-class Boss(Scene):
-
-	def enter(self):
+	def boss(self):
+	
 		print "You now have everything needed to take on the behemoth 9M abnormal Titan!"
 		print "--- ", Engine.items, " ---"
 	
@@ -268,24 +264,26 @@ class Boss(Scene):
 		print "Game Over"
 		exit(0)
 		
-class Map(object):
-
-	scenes = {'Welcome to Titan Slayer': Intro(),
-		'Field': Field(),
-		'Cave': Cave(),
-		'Forest': Forest(),
-		'Final Fight': Boss(),
-		'You Died!': Death()}
+	'''def __init__(self):
+		print "init statement run"
 		
-	def __init__(self, start_scene):
-		self.start_scene = start_scene
+		scenes = {'Welcome to Titan Slayer': self.intro(),
+		'Field': self.field(),
+		'Cave': self.cave(),
+		'Forest': self.forest(),
+		'Final Fight': self.boss(),
+		'You Died!': self.death()}'''
 		
 	def next_scene(self, scene_name):
-		return Map.scenes.get(scene_name)
+		print "next_scene run"
+		return Scene.scene_name
 		
 	def opening_scene(self):
-		return self.next_scene(self.start_scene)
+		"opening_scene run"
+		return Scene.intro()
 
-map = Map('Welcome to Titan Slayer')
-game = Engine(map)
+start = Scene()
+print "game object made"
+game = Engine(start)
+print "game instance used"
 game.play()
