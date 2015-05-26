@@ -13,14 +13,17 @@ def intro():
 	header("Welcome to Titan Slayer")
 	raw_input("\nPress ENTER to start")
 
-	print """\n\tYou awake alone, lying in a field surrounded by
+	print """
+\tYou awake alone, lying in a field surrounded by
 the bodies of your dead scout comrades.  It appears your
 entire squad has been wiped out by the titans and your ODM gear
 is low on fuel.  In the distance you see an incoming abnormal titan
 approaching and it looks to be around 9M in height.  You can't take
 on the beast without a weapon and fuel.
-\nDo you head for the weapons cache in a nearby 'cave' or run to the 
-backup fuel supply in the 'forest'?"""
+
+Do you head for the weapons cache in a nearby 'cave' or run to the 
+backup fuel supply in the 'forest'?
+"""
 
 	while True:
 		next = raw_input(p)
@@ -42,9 +45,12 @@ def field():
 	header("Field")
 	
 	if "blade" in items and "fuel" not in items:
-		print """\n\tThe abnormal titan is still in the area.
-\nDo you run for the 'forest' with your blade to search for fuel or risk engaging
-the 'titan' with low fuel?"""
+		print """
+\tThe abnormal titan is still in the area.
+
+Do you run for the 'forest' with your blade to search for fuel or risk engaging
+the 'titan' with low fuel?
+"""
 		
 		while True:
 			next = raw_input(p)
@@ -62,8 +68,11 @@ the 'titan' with low fuel?"""
 				continue
 				
 	elif "blade" not in items and "fuel" not in items:
-		print """\n\tThe abnormal titan is still in the area.
-\nDo you go back into the 'cave' or run for the 'forest'?"""
+		print """
+\tThe abnormal titan is still in the area.
+
+Do you go back into the 'cave' or run for the 'forest'?
+"""
 			
 		while True:
 			next = raw_input(p)
@@ -80,8 +89,11 @@ the 'titan' with low fuel?"""
 				continue
 				
 	else:
-		print """\n\tThe abnormal titan is still in the area.
-\nDo you go back into the 'cave' or risk engaging the 'titan' with no weapon?"""
+		print """
+\tThe abnormal titan is still in the area.
+
+Do you go back into the 'cave' or risk engaging the 'titan' with no weapon?
+"""
 		
 		while True:
 			next = raw_input(p)
@@ -100,20 +112,27 @@ the 'titan' with low fuel?"""
 def cave():
 	global completion
 	header("Cave")
-	print """\n\tYou've evaded the incoming abnormal Titan and found safety in a cave.
+	
+	print """
+\tYou've evaded the incoming abnormal Titan and found safety in a cave.
 The weapons are kept further back in the cave, however you hear a strange 
 sound coming from the darkness.  
-\nDo you proceed into the darkness to retrieve a 'weapon' or do you 'leave' 
-the cave?"""
+
+Do you proceed into the darkness to retrieve a 'weapon' or do you 'leave' 
+the cave?
+"""
 
 	while True:
 		next = raw_input(p)
 		
 		if next == "weapon":
-			print """\n\tYou have reached the weapons cache.  As you pick up a blade
-the sound of heavy footsteps become louder.  A giant bear appears!\n
-\nDo you 'fight' the giant bear using the blade or drop the weapon and 'run' 
-outside like a girl?"""
+			print """
+\tYou have reached the weapons cache.  As you pick up a blade
+the sound of heavy footsteps become louder.  A giant bear appears!
+
+Do you 'fight' the giant bear using the blade or drop the weapon and 'run' 
+outside like a girl?
+"""
 
 			next2 = raw_input(p)
 			
@@ -146,11 +165,15 @@ outside like a girl?"""
 def forest():
 	global completion
 	header("Forest")
+	
 	if "blade" in items:
-		print """\n\tYou enter the forest and notice a 3M titan is wandering around the
+		print """
+\tYou enter the forest and notice a 3M titan is wandering around the
 supply depot.
-\nDo you throw a 'rock' to distract him so you can retrieve the fuel
-or do you use your blade and what fuel you have left to 'kill' him?"""
+
+Do you throw a 'rock' to distract him so you can retrieve the fuel
+or do you use your blade and what fuel you have left to 'kill' him?
+"""
 
 		while True:
 			next = raw_input(p)
@@ -160,8 +183,12 @@ or do you use your blade and what fuel you have left to 'kill' him?"""
 				death()
 			
 			elif next == "kill":
-				print """\n\tYou've slain the titan and retrieved fuel.  You are now ready
-to take on the abnormal titan.\n\nPress ENTER to return to the field and engage the 9M abnormal titan!"""
+				print """
+\tYou've slain the titan and retrieved fuel.  You are now ready
+to take on the abnormal titan.
+
+Press ENTER to return to the field and engage the 9M abnormal titan!
+"""
 				items.append("fuel")
 				completion += 25
 				raw_input()
@@ -171,10 +198,13 @@ to take on the abnormal titan.\n\nPress ENTER to return to the field and engage 
 				print "I don't understand. Type either 'rock' or 'kill'."
 			
 	else:
-		print """\n\tYou enter the forest and notice a 3M titan is wandering around the
+		print """
+\tYou enter the forest and notice a 3M titan is wandering around the
 supply depot.
-\nDo you throw a 'rock' to distract him or do you try to 'sneak' around the titan 
-to retrieve the fuel?"""
+
+Do you throw a 'rock' to distract him or do you try to 'sneak' around the titan 
+to retrieve the fuel?
+"""
 
 		while True:
 			next = raw_input(p)
@@ -184,8 +214,11 @@ to retrieve the fuel?"""
 				death()
 			
 			elif next == "sneak":
-				print """\nYou successfully went around the titan and retrieved the fuel.
-					\n\nPress ENTER to return to the cave and retrieve a weapon."""
+				print """
+You successfully went around the titan and retrieved the fuel.
+
+Press ENTER to return to the cave and retrieve a weapon.
+"""
 				items.append("fuel")
 				completion += 25
 				raw_input()
@@ -231,19 +264,23 @@ def boss():
 
 		elif i == 2:
 			raw_input(a)
-			print """Without his big toe the titan stumbles around allowing you to cut deep into 
-his achilles."""
+			print """
+Without his big toe the titan stumbles around allowing you to cut deep into 
+his achilles.
+"""
 
 		elif i == 3:
 			raw_input(a)
-			print """The behemoth falls to the ground and you manage to deliver the final blow to 
-the back of his neck!"""
+			print """
+The behemoth falls to the ground and you manage to deliver the final blow to 
+the back of his neck!
+"""
 			raw_input("\npress ENTER\n")
 
 		else:
 			break
-	print """Congratulations! You've slain the 9M abnormal titan and 
-completed", completion, "% of Titan Slayer."""
+	print "Congratulations! You've slain the 9M abnormal titan and"
+	print "completed", completion, "% of Titan Slayer."
 	print "\nGAME OVER"
 	exit(0)
 
